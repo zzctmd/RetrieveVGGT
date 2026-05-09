@@ -37,7 +37,7 @@ mkdir -p src/data
 ln -s /path/to/7scenes src/data/7scenes
 ```
 
-### Neural RGBD
+### NRGBD
 
 Download:
 ```bash

@@ -68,11 +68,11 @@ huggingface-cli download lch01/StreamVGGT checkpoints.pth --local-dir ckpt/
 ```
 Or manually download `checkpoints.pth` (~4.7 GB) from [Hugging Face](https://huggingface.co/lch01/StreamVGGT/) / [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/d/d6ad8f36fcd541bcb246/) and place it in `ckpt/`.
 
-> For dataset preparation, please refer to [eval.md](eval.md).
-
 ---
 
 ## 🧪 Evaluation
+
+> For dataset preparation, please refer to [eval.md](eval.md).
 
 All evaluation scripts are in `scripts/`. Each supports environment-variable overrides:
 
@@ -89,7 +89,7 @@ All evaluation scripts are in `scripts/`. Each supports environment-variable ove
 FRAMES=500 bash scripts/run_recon.sh
 ```
 
-**Neural RGBD (500 frames)**
+**NRGBD (500 frames)**
 ```bash
 DATASET=nrgbd FRAMES=500 bash scripts/run_recon.sh
 ```
