@@ -70,9 +70,9 @@ Or manually download `checkpoints.pth` (~4.7 GB) from [Hugging Face](https://hug
 
 ---
 
-## 🚀 Quick Start: Reproduce 7-Scenes 500-Frame Results
+## 📦 Dataset Preparation
 
-### 1. Prepare 7-Scenes Dataset
+### 7-Scenes
 
 Download from the [official website](https://www.microsoft.com/en-us/research/project/rgb-d-dataset-7-scenes/) or use the [SimpleRecon script](https://github.com/nianticlabs/simplerecon/blob/477aa5b32aa1b93f53abc72828f86023b6e46ce7/data_scripts/7scenes_preprocessing.py#L43):
 
@@ -109,7 +109,61 @@ mkdir -p src/data
 ln -s /path/to/7scenes src/data/7scenes
 ```
 
-### 2. Run Evaluation
+### Neural RGBD
+
+Download:
+```bash
+bash data/download_nrgbd.sh /path/to/download
+```
+
+Preprocessing:
+```bash
+ln -s /path/to/download/neural_rgbd_data src/data/nrgbd
+```
+
+### Bonn RGB-D Dynamic
+
+Download:
+```bash
+bash data/download_bonn.sh /path/to/download
+```
+
+Preprocessing:
+```bash
+python datasets_preprocess/prepare_bonn.py \
+    --data_dir /path/to/download/bonn/rgbd_bonn_dataset \
+    --output_dir src/data/long_bonn_s1/rgbd_bonn_dataset \
+    --frames 50,200,300,400,500
+```
+
+### TUM freiburg3
+
+Download:
+```bash
+bash data/download_tum_dynamics.sh /path/to/download
+```
+
+Preprocessing:
+```bash
+python datasets_preprocess/prepare_tum_dynamic.py \
+    --data_dir /path/to/download/tum \
+    --output_dir src/data/long_tum_dynamic_s1 \
+    --frames 50,200,500,1000
+```
+
+---
+
+## 🧪 Evaluation
+
+All evaluation scripts are in `scripts/`. Each supports environment-variable overrides:
+
+| Task | Script | Example |
+|------|--------|---------|
+| 3D Reconstruction | `scripts/run_recon.sh` | `GPU_ID=0 DATASET=nrgbd FRAMES="200 500" bash scripts/run_recon.sh` |
+| Video Depth | `scripts/run_depth.sh` | `GPU_ID=0 DATASETS="bonn_s1_200 bonn_s1_500" bash scripts/run_depth.sh` |
+| Camera Pose | `scripts/run_pose.sh` | `GPU_ID=0 DATASETS="tum_dynamic_s1_200 tum_dynamic_s1_500" bash scripts/run_pose.sh` |
+
+### Quick Start: 7-Scenes 500-Frame
 
 ```bash
 cd src/
@@ -127,54 +181,11 @@ CUDA_VISIBLE_DEVICES=0 python eval/mv_recon/launch_retrieve.py \
 
 Or simply: `bash scripts/run_recon.sh`
 
-### 3. Check Results
-
-Per-scene results are saved in `eval_results/7scenes_500/7scenes/`. Average metrics are printed at the end:
+Results are saved in `eval_results/7scenes_500/7scenes/`. Average metrics are printed at the end:
 
 ```
 avg Acc: X.XX, avg Comp: X.XX, avg NC1: X.XX, avg NC2: X.XX
 ```
-
----
-
-## 📦 Datasets
-
-| Dataset | Task | Download | Preprocessing |
-|---------|------|----------|---------------|
-| [7-Scenes](https://www.microsoft.com/en-us/research/project/rgb-d-dataset-7-scenes/) | 3D Reconstruction | See [Quick Start](#1-prepare-7-scenes-dataset) | — |
-| [Neural RGBD](http://kaldir.vc.in.tum.de/neural_rgbd/neural_rgbd_data.zip) | 3D Reconstruction | `bash data/download_nrgbd.sh /path/to/download` | `ln -s /path/to/download/neural_rgbd_data src/data/nrgbd` |
-| [Bonn RGB-D Dynamic](https://www.ipb.uni-bonn.de/data/rgbd-dynamic-dataset/) | Video Depth | `bash data/download_bonn.sh /path/to/download` | See below |
-| [TUM freiburg3](https://cvg.cit.tum.de/data/datasets/rgbd-dataset/download) | Camera Pose | `bash data/download_tum_dynamics.sh /path/to/download` | See below |
-
-### Bonn Preprocessing
-
-```bash
-python datasets_preprocess/prepare_bonn.py \
-    --data_dir /path/to/download/bonn/rgbd_bonn_dataset \
-    --output_dir src/data/long_bonn_s1/rgbd_bonn_dataset \
-    --frames 50,200,300,400,500
-```
-
-### TUM Dynamic Preprocessing
-
-```bash
-python datasets_preprocess/prepare_tum_dynamic.py \
-    --data_dir /path/to/download/tum \
-    --output_dir src/data/long_tum_dynamic_s1 \
-    --frames 50,200,500,1000
-```
-
----
-
-## 🧪 Evaluations
-
-All evaluation scripts are in `scripts/`. Each supports environment-variable overrides:
-
-| Task | Script | Example |
-|------|--------|---------|
-| 3D Reconstruction | `scripts/run_recon.sh` | `GPU_ID=0 DATASET=nrgbd FRAMES="200 500" bash scripts/run_recon.sh` |
-| Video Depth | `scripts/run_depth.sh` | `GPU_ID=0 DATASETS="bonn_s1_200 bonn_s1_500" bash scripts/run_depth.sh` |
-| Camera Pose | `scripts/run_pose.sh` | `GPU_ID=0 DATASETS="tum_dynamic_s1_200 tum_dynamic_s1_500" bash scripts/run_pose.sh` |
 
 ### StreamVGGT Baseline (without retrieval)
 
@@ -182,9 +193,7 @@ All evaluation scripts are in `scripts/`. Each supports environment-variable ove
 cd src/ && bash eval/mv_recon/run.sh
 ```
 
----
-
-## 🔧 Key Parameters
+### Key Parameters
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
@@ -251,33 +260,24 @@ RetrieveVGGT/
 ## 🙏 Acknowledgement
 We would like to acknowledge the following open-source projects that served as a foundation for our implementation:
 
-[DUSt3R](https://github.com/naver/dust3r)
 [CUT3R](https://github.com/CUT3R/CUT3R)
 [VGGT](https://github.com/facebookresearch/vggt)
 [Point3R](https://github.com/YkiWu/Point3R)
 [StreamVGGT](https://github.com/wzzheng/StreamVGGT)
-[FastVGGT](https://github.com/mystorm16/FastVGGT)
 [TTT3R](https://github.com/Inception3D/TTT3R)
 
 Many thanks to these authors!
 
 ---
 
-## 📋 Checklist
-- [ ] Release the arXiv paper.
-- [ ] Release the HuggingFace checkpoint.
-
----
-
-<!-- TODO: Add citation after arXiv release -->
-<!-- ## 📜 Citation
+## 📜 Citation
 
 If you incorporate our work into your research, please cite:
 ```
-@misc{xxx2026retrievevggt,
-        title={Attention Itself Could Retrieve. RetrieveVGGT: Training-Free Long Context Streaming 3D Reconstruction via Query-Key Similarity Retrieval}, 
-        author={...},
-        journal={arXiv preprint arXiv:xxxx.xxxxx},
+@misc{yuan2026infinitevggt,
+        title={InfiniteVGGT: Visual Geometry Grounded Transformer for Endless Streams}, 
+        author={Shuai Yuan and Yantai Yang and Xiaotian Yang and Xupeng Zhang and Zhonghao Zhao and Lingming Zhang and Zhipeng Zhang},
+        journal={arXiv preprint arXiv:2601.02281},
         year={2026}
 }
-``` -->
+```
