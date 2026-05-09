@@ -1,5 +1,5 @@
 <h1 align="center">
-  RetrieveVGGT: Query-Driven KV Cache Retrieval for<br>Streaming Visual Geometry Perception
+  RetrieveVGGT: Training-Free Long Context Streaming 3D Reconstruction via Query-Key Similarity Retrieval
 </h1>
 
 <div align="center">
