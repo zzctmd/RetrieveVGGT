@@ -1,0 +1,50 @@
+# Checkpoints & Data
+ckpt/*.pth
+ckpt/*.pt
+data/
+src/data/
+
+# Evaluation results
+eval_results/
+src/eval_results/
+
+# Debug & profiling logs
+debug_logs/
+logs/
+profiling_logs/
+
+# Visualization results
+visual_result/
+
+# Python
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+*.egg
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs & temp
+*.log
+*.tmp
+
+# System
+.DS_Store
+Thumbs.db
+
+# Compiled CUDA extensions (rebuild locally)
+src/croco/models/curope/*.so
+lib/
