@@ -3,13 +3,9 @@
 </h1>
 
 <div align="center">
-  <b>TL;DR</b>: A training-free streaming 3D reconstruction framework that formulates context construction for VGGT as a retrieval problem. By retrieving a fixed number of relevant frames at each step, VGGT maintains a controllable memory budget close to its training context length, eliminating the need for additional learned scoring.
-</div>
-
-<div align="center">
     <p>
-        <a>Zichen Zou,</a><sup>1</sup>&nbsp;&nbsp;
-        <a>Xiaosong Jia,</a><sup>1</sup>&nbsp;&nbsp;
+        <a href="https://github.com/zzctmd">Zichen Zou,</a><sup>1</sup>&nbsp;&nbsp;
+        <a href="https://github.com/jiaxiaosong1002">Xiaosong Jia,</a><sup>1</sup>&nbsp;&nbsp;
         <a>Zuxuan Wu,</a><sup>1</sup>&nbsp;&nbsp;
         <a>Yu-Gang Jiang</a><sup>1</sup>&nbsp;&nbsp;
     </p>
