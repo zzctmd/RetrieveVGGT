@@ -14,31 +14,28 @@
     </p>
 </div>
 
-<!-- TODO: Add arXiv / HuggingFace badges after paper release -->
-<!-- <p align="center">
-    <a href="https://arxiv.org/abs/xxxx.xxxxx"><img src="https://img.shields.io/badge/arXiv-RetrieveVGGT-red?logo=arxiv" alt="Paper PDF"></a>
-    <a href="https://huggingface.co/xxx"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging_Face-RetrieveVGGT-yellow" alt="Hugging Face"></a>
-</p> -->
-
 <p align="center">
-  <img src="assets/method.png" width="90%">
+    <a href="https://arxiv.org/abs/2601.02281v1"><img src="https://img.shields.io/badge/arXiv-RetrieveVGGT-red?logo=arxiv" alt="Paper PDF"></a>
+    <a href="https://huggingface.co/papers/2601.02281"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging_Face-RetrieveVGGT-yellow" alt="Hugging Face"></a>
 </p>
 
 ## 📰 News
+- [May 2026] Paper release.
 - [May 2026] Code release.
-- [May 2026] Project page release.
 
 ## 📖 Overview
 
-We present **RetrieveVGGT**, a **training-free streaming 3D reconstruction framework**, which treats the construction of context for VGGT as a **retrieval problem**. For each incoming frame, RetrieveVGGT retrieves relevant frames from the entire history based on the similarity between current frame queries and cached history frame keys at the first global attention layer of VGGT, bounding memory to a fixed budget.
-
-Interestingly, we find that the similarity between current frame queries and cached history frame keys at the first global attention layer of VGGT is already a strong indicator of relevance, **eliminating the need for additional learned scoring**. To enhance information diversity similar to a recommender system, we propose **Segment Sampling** so that the retrieval spans distinct relevant segments rather than a single high-similarity region. We also design a **pose-aware spatial memory** mechanism that organizes history frames according to their already estimated camera poses, enabling location-aware retrieval and region-level compression via periodic uniform subsampling for scalable long-term memory management.
+We propose **RetrieveVGGT**, a **training-free streaming 3D reconstruction framework** that treats the construction of context for VGGT as a **retrieval problem**. For each incoming frame, RetrieveVGGT retrieves relevant frames from the entire history based on query-key similarity at the first global attention layer of VGGT, bounding memory to a fixed budget. We introduce **Segment Sampling** to enhance information diversity and a **pose-aware spatial memory** mechanism for scalable long-term memory management.
 
 Our main contributions are summarized as follows:
 
-1. We propose RetrieveVGGT, a retrieval-based training-free streaming 3D reconstruction framework that enables each frame to dynamically attend to its most relevant historical keyframes, achieving faithful reconstruction with **constant memory cost regardless of sequence length**.
-2. We introduce **Segment Sampling** and a **pose-aware spatial memory** to jointly enhance selection diversity across the full history and scalable long-term memory management.
-3. Extensive experiments on 3D reconstruction, video depth estimation, and camera pose estimation demonstrate that RetrieveVGGT achieves **state-of-the-art performance with up to 20% improvement over existing streaming methods**, while maintaining bounded GPU memory consumption.
+1. A retrieval-based training-free streaming 3D reconstruction framework that enables dynamic attention to relevant historical keyframes with **constant memory cost regardless of sequence length**.
+2. **Segment Sampling** and **pose-aware spatial memory** for enhanced selection diversity and scalable long-term memory management.
+3. State-of-the-art performance on 3D reconstruction, video depth estimation, and camera pose estimation with **up to 20% improvement over existing streaming methods**, while maintaining bounded GPU memory consumption.
+
+<div align="center">
+    <img src="assets/method.png" width="90%">
+</div>
 
 ---
 
