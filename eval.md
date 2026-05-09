@@ -49,7 +49,7 @@ Preprocessing:
 ln -s /path/to/download/neural_rgbd_data src/data/nrgbd
 ```
 
-### Bonn RGB-D Dynamic
+### Bonn
 
 Download:
 ```bash
@@ -64,7 +64,7 @@ python datasets_preprocess/prepare_bonn.py \
     --frames 50,200,300,400,500
 ```
 
-### TUM freiburg3
+### TUM Dynamic
 
 Download:
 ```bash
