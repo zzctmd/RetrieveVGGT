@@ -16,7 +16,6 @@
 
 <p align="center">
     <a href="https://arxiv.org/abs/2601.02281v1"><img src="https://img.shields.io/badge/arXiv-RetrieveVGGT-red?logo=arxiv" alt="Paper PDF"></a>
-    <a href="https://huggingface.co/papers/2601.02281"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging_Face-RetrieveVGGT-yellow" alt="Hugging Face"></a>
 </p>
 
 ## 📰 News
