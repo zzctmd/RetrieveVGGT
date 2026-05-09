@@ -1,6 +1,4 @@
-# Evaluation
-
-## Datasets
+# Datasets
 
 ### 7-Scenes
 
@@ -80,60 +78,3 @@ python datasets_preprocess/prepare_tum_dynamic.py \
     --output_dir src/data/long_tum_dynamic_s1 \
     --frames 50,200,500,1000
 ```
-
----
-
-## Evaluation Scripts
-
-All evaluation scripts are in `scripts/`. Each supports environment-variable overrides:
-
-| Task | Script | Example |
-|------|--------|---------|
-| 3D Reconstruction | `scripts/run_recon.sh` | `GPU_ID=0 DATASET=nrgbd FRAMES="200 500" bash scripts/run_recon.sh` |
-| Video Depth | `scripts/run_depth.sh` | `GPU_ID=0 DATASETS="bonn_s1_200 bonn_s1_500" bash scripts/run_depth.sh` |
-| Camera Pose | `scripts/run_pose.sh` | `GPU_ID=0 DATASETS="tum_dynamic_s1_200 tum_dynamic_s1_500" bash scripts/run_pose.sh` |
-
-### Quick Start: 7-Scenes 500-Frame
-
-```bash
-cd src/
-CUDA_VISIBLE_DEVICES=0 python eval/mv_recon/launch_retrieve.py \
-    --weights ../ckpt/checkpoints.pth \
-    --dataset 7scenes \
-    --size 518 \
-    --output_dir ../eval_results/7scenes_500 \
-    --max_frames 500 \
-    --top_k 47 \
-    --anchor 1 \
-    --use_segment_sampling \
-    --segment_threshold_mode "mean+0.3std"
-```
-
-Or simply: `bash scripts/run_recon.sh`
-
-Results are saved in `eval_results/7scenes_500/7scenes/`. Average metrics are printed at the end:
-
-```
-avg Acc: X.XX, avg Comp: X.XX, avg NC1: X.XX, avg NC2: X.XX
-```
-
-### StreamVGGT Baseline (without retrieval)
-
-```bash
-cd src/ && bash eval/mv_recon/run.sh
-```
-
-### Key Parameters
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| `--top_k` | 47 | Number of query-relevant historical frames to retrieve |
-| `--anchor` | 1 | Number of anchor frames (always kept) |
-| `--use_segment_sampling` | flag | Enable segment sampling for diverse coverage |
-| `--segment_threshold_mode` | `mean+0.3std` | Similarity threshold for segment detection |
-| `--max_frames` | 500 | Max frames to process per sequence |
-| `--size` | 518 | Input resolution (518×392) |
-| `--use_pose_aware` | flag | Enable Pose-Aware spatial region classification |
-| `--use_kv_compression` | flag | Enable per-region KV compression |
-
-**Total context window** = `top_k` + `anchor` = 47 + 1 = **48 frames** per step.

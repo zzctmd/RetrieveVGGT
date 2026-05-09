@@ -68,7 +68,47 @@ huggingface-cli download lch01/StreamVGGT checkpoints.pth --local-dir ckpt/
 ```
 Or manually download `checkpoints.pth` (~4.7 GB) from [Hugging Face](https://huggingface.co/lch01/StreamVGGT/) / [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/d/d6ad8f36fcd541bcb246/) and place it in `ckpt/`.
 
-> For dataset preparation and evaluation scripts, please refer to [eval.md](eval.md).
+> For dataset preparation, please refer to [eval.md](eval.md).
+
+---
+
+## 🧪 Evaluation
+
+All evaluation scripts are in `scripts/`. Each supports environment-variable overrides:
+
+| Task | Script | Example |
+|------|--------|---------|
+| 3D Reconstruction | `scripts/run_recon.sh` | `DATASET=nrgbd FRAMES=500 bash scripts/run_recon.sh` |
+| Video Depth | `scripts/run_depth.sh` | `DATASETS="bonn_s1_500" bash scripts/run_depth.sh` |
+| Camera Pose | `scripts/run_pose.sh` | `DATASETS="tum_dynamic_s1_1000" bash scripts/run_pose.sh` |
+
+### Quick Start
+
+**7-Scenes (500 frames)**
+```bash
+FRAMES=500 bash scripts/run_recon.sh
+```
+
+**Neural RGBD (500 frames)**
+```bash
+DATASET=nrgbd FRAMES=500 bash scripts/run_recon.sh
+```
+
+**Bonn (500 frames)**
+```bash
+DATASETS="bonn_s1_500" bash scripts/run_depth.sh
+```
+
+**TUM Dynamic (1000 frames)**
+```bash
+DATASETS="tum_dynamic_s1_1000" bash scripts/run_pose.sh
+```
+
+### StreamVGGT Baseline (without retrieval)
+
+```bash
+cd src/ && bash eval/mv_recon/run.sh
+```
 
 ---
 
