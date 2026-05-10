@@ -14,9 +14,11 @@
     </p>
 </div>
 
+<!--
 <p align="center">
     <a href="https://arxiv.org/abs/2601.02281v1"><img src="https://img.shields.io/badge/arXiv-RetrieveVGGT-red?logo=arxiv" alt="Paper PDF"></a>
 </p>
+-->
 
 ## 📰 News
 - [May 2026] Paper release.
@@ -166,6 +168,7 @@ Many thanks to these authors!
 
 ---
 
+<!--
 ## 📜 Citation
 
 If you incorporate our work into your research, please cite:
@@ -177,5 +180,6 @@ If you incorporate our work into your research, please cite:
         year={2026}
 }
 ```
+-->
 
 <!-- Last updated by Kimi CLI -->
