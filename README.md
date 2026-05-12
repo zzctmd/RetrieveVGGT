@@ -14,11 +14,9 @@
     </p>
 </div>
 
-<!--
 <p align="center">
-    <a href="https://arxiv.org/abs/2601.02281v1"><img src="https://img.shields.io/badge/arXiv-RetrieveVGGT-red?logo=arxiv" alt="Paper PDF"></a>
+    <a href="https://arxiv.org/abs/2605.09644"><img src="https://img.shields.io/badge/arXiv-RetrieveVGGT-red?logo=arxiv" alt="Paper PDF"></a>
 </p>
--->
 
 ## 📰 News
 - [May 2026] Paper release.
@@ -168,18 +166,19 @@ Many thanks to these authors!
 
 ---
 
-<!--
 ## 📜 Citation
 
 If you incorporate our work into your research, please cite:
 ```
-@misc{yuan2026infinitevggt,
-        title={InfiniteVGGT: Visual Geometry Grounded Transformer for Endless Streams}, 
-        author={Shuai Yuan and Yantai Yang and Xiaotian Yang and Xupeng Zhang and Zhonghao Zhao and Lingming Zhang and Zhipeng Zhang},
-        journal={arXiv preprint arXiv:2601.02281},
-        year={2026}
+@misc{zou2026attentionretrieveretrievevggttrainingfreelong,
+      title={Attention Itself Could Retrieve.RetrieveVGGT: Training-Free Long Context Streaming 3D Reconstruction via Query-Key Similarity Retrieval}, 
+      author={Zichen Zou and Xiaosong Jia and Zuxuan Wu and Yu-Gang Jiang},
+      year={2026},
+      eprint={2605.09644},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2605.09644}, 
 }
 ```
--->
 
 <!-- Last updated by Kimi CLI -->
