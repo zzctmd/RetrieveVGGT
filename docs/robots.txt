@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zzctmd.github.io/RetrieveVGGT/sitemap.xml
