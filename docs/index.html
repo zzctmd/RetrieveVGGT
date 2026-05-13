@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="RetrieveVGGT: Training-Free Long Context Streaming 3D Reconstruction via Query-Key Similarity Retrieval">
+  <meta property="og:title" content="RetrieveVGGT" />
+  <meta property="og:description" content="RetrieveVGGT: Training-Free Long Context Streaming 3D Reconstruction via Query-Key Similarity Retrieval" />
+  <meta property="og:url" content="https://zzctmd.github.io/RetrieveVGGT" />
+  <meta property="og:image" content="static/images/framework_overview.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:title" content="RetrieveVGGT">
+  <meta name="twitter:description" content="RetrieveVGGT: Training-Free Long Context Streaming 3D Reconstruction via Query-Key Similarity Retrieval">
+  <meta name="twitter:image" content="static/images/framework_overview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="keywords" content="3D Reconstruction, Streaming, VGGT, Retrieval, Computer Vision">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>RetrieveVGGT</title>
+  <link rel="icon" href="static/images/framework_overview.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <style>
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 2rem;
+    }
+    .comparison-grid img {
+      width: 100%;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .comparison-label {
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 0.5rem;
+    }
+    .scene-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #333;
+      border-left: 4px solid #3273dc;
+      padding-left: 10px;
+    }
+    .bibtex-box {
+      background: #f5f5f5;
+      border-radius: 8px;
+      padding: 1.5rem;
+      font-family: monospace;
+      font-size: 0.85rem;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      border: 1px solid #dbdbdb;
+    }
+    .method-highlight {
+      color: #3273dc;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Attention Itself Could Retrieve.<br>RetrieveVGGT: Training-Free Long Context Streaming 3D Reconstruction via Query-Key Similarity Retrieval</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://github.com/zzctmd" target="_blank">Zichen Zou</a><sup>1,2</sup>,&nbsp;
+                <a href="https://github.com/jiaxiaosong1002" target="_blank">Xiaosong Jia</a><sup>1,2</sup>,&nbsp;
+                <a>Zuxuan Wu</a><sup>1,2</sup>,&nbsp;
+                <a>Yu-Gang Jiang</a><sup>1,2</sup>
+              </span>
+            </div>
+            <div class="is-size-5 publication-authors" style="margin-top: 0.5rem;">
+              <span class="author-block">
+                <sup>1</sup>Institute of Trustworthy Embodied AI (TEAI), Fudan University<br>
+                <sup>2</sup>Shanghai Key Laboratory of Multimodal Embodied AI
+              </span>
+            </div>
+
+            <div class="column has-text-centered" style="margin-top: 1rem;">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2605.09644" target="_blank"
+                    class="external-link button is-normal is-rounded is-outlined is-success">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/zzctmd/RetrieveVGGT" target="_blank"
+                    class="external-link button is-normal is-rounded is-outlined is-primary">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section content-section">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <h3 class="title is-3 has-text-centered">Highlight</h3>
+        <figure class="image" style="display:flex; justify-content:center; margin-top:1.5rem;">
+          <img src="static/images/framework_overview.png"
+            alt="RetrieveVGGT Framework Overview"
+            style="max-width:100%; height:auto; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+        </figure>
+        <h2 class="subtitle" style="margin-top:32px; text-align:justify; text-align-last:left; line-height:1.5;">
+          <strong>RetrieveVGGT</strong> is a <strong>training-free streaming 3D reconstruction framework</strong> that treats the construction of context for VGGT as a <strong>retrieval problem</strong>. For each incoming frame, RetrieveVGGT retrieves relevant frames from the entire history based on query-key similarity at the first global attention layer of VGGT, bounding memory to a fixed budget. We introduce <strong>Segment Sampling</strong> to enhance information diversity and a <strong>pose-aware spatial memory</strong> mechanism for scalable long-term memory management.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="section content-section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-12">
+          <h3 class="title is-3">Abstract</h3>
+          <div class="has-text-justified">
+            <p>
+              Visual Geometry Grounded Transformer (VGGT) advances 3D reconstruction via scalable Transformer architecture, but the quadratic complexity of global attention prevents long context application. StreamVGGT enables streaming with causal attention, yet its KV cache grows linearly with frames, causing memory overflow and quality degradation.
+              We present <strong>RetrieveVGGT</strong>, <strong>a training-free framework, which formulates context construction for VGGT as a retrieval problem</strong>. By retrieving a fixed number of relevant frames at each step, VGGT maintains a controllable memory budget, which is close to its training context length. Interestingly, we find that the similarity between current frame queries and cached history frame keys at the first global attention layer of VGGT is already a strong indicator of relevance, eliminating the need for additional learned scoring. To enhance information diversity similar to a recommender system, we propose <strong>Segment Sampling</strong> so that the retrieval spans distinct relevant segments rather than a single high-similarity region. We design a <strong>pose-aware spatial memory</strong> mechanism that organizes history frames according to their already estimated camera poses, enabling location-aware retrieval. Extensive experiments demonstrate that RetrieveVGGT achieves state-of-the-art performance, outperforming StreamVGGT, TTT3R, and InfiniteVGGT while maintaining constant memory usage regardless of sequence length. Code is available at <a href="https://github.com/zzctmd/RetrieveVGGT" target="_blank">https://github.com/zzctmd/RetrieveVGGT</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h3 class="title is-3" style="text-align:left;">Framework Overview</h3>
+      <figure class="image" style="display:flex; justify-content:center; margin-top:1.2rem; margin-bottom:0.2rem;">
+        <img src="static/images/retrieval_mechanism.png"
+          alt="RetrieveVGGT Retrieval Mechanism"
+          style="max-width:100%; height:auto; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+      </figure>
+      <p class="subtitle is-5" style="margin:0; margin-bottom:2rem; text-align:justify; text-align-last:left; line-height:1.55;">
+        Given a query frame, RetrieveVGGT computes frame-level relevance scores using the dot product between query tokens and cached key tokens at the first global attention layer of VGGT. Segment Sampling then groups high-relevance frames into contiguous segments and selects one representative from each segment, ensuring temporal diversity. A pose-aware spatial memory further organizes cached frames by camera pose, enabling scalable long-term memory management with constant GPU consumption.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h3 class="title is-3" style="text-align:left;">Visual Comparison</h3>
+      <p class="subtitle is-5" style="margin-bottom:1.5rem; text-align:justify; text-align-last:left; line-height:1.55;">
+        Qualitative 3D reconstruction results on NRGBD scenes. For each scene, we show the reference input, predictions from TTT3R and RetrieveVGGT (Ours), and the ground truth from an identical viewpoint. RetrieveVGGT maintains structural fidelity without the distortion or catastrophic forgetting seen in recurrent methods, particularly in large-scale scenes where long-range context is critical.
+      </p>
+
+      <!-- Scene 1: breakfast_room -->
+      <div class="scene-title">breakfast_room</div>
+      <div class="comparison-grid">
+        <div>
+          <div class="comparison-label">Reference</div>
+          <img src="static/images/qual3d/nrgbd_breakfast_room_input.png" alt="breakfast_room input">
+        </div>
+        <div>
+          <div class="comparison-label">TTT3R</div>
+          <img src="static/images/qual3d/nrgbd_breakfast_room_ttt3r.png" alt="breakfast_room TTT3R">
+        </div>
+        <div>
+          <div class="comparison-label" style="color:#3273dc;">RetrieveVGGT (Ours)</div>
+          <img src="static/images/qual3d/nrgbd_breakfast_room_geokv.png" alt="breakfast_room Ours">
+        </div>
+        <div>
+          <div class="comparison-label">Ground Truth</div>
+          <img src="static/images/qual3d/nrgbd_breakfast_room_gt.png" alt="breakfast_room GT">
+        </div>
+      </div>
+
+      <!-- Scene 2: complete_kitchen -->
+      <div class="scene-title">complete_kitchen</div>
+      <div class="comparison-grid">
+        <div>
+          <div class="comparison-label">Reference</div>
+          <img src="static/images/qual3d/nrgbd_complete_kitchen_input.png" alt="complete_kitchen input">
+        </div>
+        <div>
+          <div class="comparison-label">TTT3R</div>
+          <img src="static/images/qual3d/nrgbd_complete_kitchen_ttt3r.png" alt="complete_kitchen TTT3R">
+        </div>
+        <div>
+          <div class="comparison-label" style="color:#3273dc;">RetrieveVGGT (Ours)</div>
+          <img src="static/images/qual3d/nrgbd_complete_kitchen_geokv.png" alt="complete_kitchen Ours">
+        </div>
+        <div>
+          <div class="comparison-label">Ground Truth</div>
+          <img src="static/images/qual3d/nrgbd_complete_kitchen_gt.png" alt="complete_kitchen GT">
+        </div>
+      </div>
+
+      <!-- Scene 3: green_room -->
+      <div class="scene-title">green_room</div>
+      <div class="comparison-grid">
+        <div>
+          <div class="comparison-label">Reference</div>
+          <img src="static/images/qual3d/nrgbd_green_room_input.png" alt="green_room input">
+        </div>
+        <div>
+          <div class="comparison-label">TTT3R</div>
+          <img src="static/images/qual3d/nrgbd_green_room_ttt3r.png" alt="green_room TTT3R">
+        </div>
+        <div>
+          <div class="comparison-label" style="color:#3273dc;">RetrieveVGGT (Ours)</div>
+          <img src="static/images/qual3d/nrgbd_green_room_geokv.png" alt="green_room Ours">
+        </div>
+        <div>
+          <div class="comparison-label">Ground Truth</div>
+          <img src="static/images/qual3d/nrgbd_green_room_gt.png" alt="green_room GT">
+        </div>
+      </div>
+
+      <!-- Scene 4: grey_white_room -->
+      <div class="scene-title">grey_white_room</div>
+      <div class="comparison-grid">
+        <div>
+          <div class="comparison-label">Reference</div>
+          <img src="static/images/qual3d/nrgbd_grey_white_room_input.png" alt="grey_white_room input">
+        </div>
+        <div>
+          <div class="comparison-label">TTT3R</div>
+          <img src="static/images/qual3d/nrgbd_grey_white_room_ttt3r.png" alt="grey_white_room TTT3R">
+        </div>
+        <div>
+          <div class="comparison-label" style="color:#3273dc;">RetrieveVGGT (Ours)</div>
+          <img src="static/images/qual3d/nrgbd_grey_white_room_geokv.png" alt="grey_white_room Ours">
+        </div>
+        <div>
+          <div class="comparison-label">Ground Truth</div>
+          <img src="static/images/qual3d/nrgbd_grey_white_room_gt.png" alt="grey_white_room GT">
+        </div>
+      </div>
+
+      <!-- Scene 5: kitchen -->
+      <div class="scene-title">kitchen</div>
+      <div class="comparison-grid">
+        <div>
+          <div class="comparison-label">Reference</div>
+          <img src="static/images/qual3d/nrgbd_kitchen_input.png" alt="kitchen input">
+        </div>
+        <div>
+          <div class="comparison-label">TTT3R</div>
+          <img src="static/images/qual3d/nrgbd_kitchen_ttt3r.png" alt="kitchen TTT3R">
+        </div>
+        <div>
+          <div class="comparison-label" style="color:#3273dc;">RetrieveVGGT (Ours)</div>
+          <img src="static/images/qual3d/nrgbd_kitchen_geokv.png" alt="kitchen Ours">
+        </div>
+        <div>
+          <div class="comparison-label">Ground Truth</div>
+          <img src="static/images/qual3d/nrgbd_kitchen_gt.png" alt="kitchen GT">
+        </div>
+      </div>
+
+      <!-- Scene 6: morning_apartment -->
+      <div class="scene-title">morning_apartment</div>
+      <div class="comparison-grid">
+        <div>
+          <div class="comparison-label">Reference</div>
+          <img src="static/images/qual3d/nrgbd_morning_apartment_input.png" alt="morning_apartment input">
+        </div>
+        <div>
+          <div class="comparison-label">TTT3R</div>
+          <img src="static/images/qual3d/nrgbd_morning_apartment_ttt3r.png" alt="morning_apartment TTT3R">
+        </div>
+        <div>
+          <div class="comparison-label" style="color:#3273dc;">RetrieveVGGT (Ours)</div>
+          <img src="static/images/qual3d/nrgbd_morning_apartment_geokv.png" alt="morning_apartment Ours">
+        </div>
+        <div>
+          <div class="comparison-label">Ground Truth</div>
+          <img src="static/images/qual3d/nrgbd_morning_apartment_gt.png" alt="morning_apartment GT">
+        </div>
+      </div>
+
+      <!-- Scene 7: whiteroom -->
+      <div class="scene-title">whiteroom</div>
+      <div class="comparison-grid">
+        <div>
+          <div class="comparison-label">Reference</div>
+          <img src="static/images/qual3d/nrgbd_whiteroom_input.png" alt="whiteroom input">
+        </div>
+        <div>
+          <div class="comparison-label">TTT3R</div>
+          <img src="static/images/qual3d/nrgbd_whiteroom_ttt3r.png" alt="whiteroom TTT3R">
+        </div>
+        <div>
+          <div class="comparison-label" style="color:#3273dc;">RetrieveVGGT (Ours)</div>
+          <img src="static/images/qual3d/nrgbd_whiteroom_geokv.png" alt="whiteroom Ours">
+        </div>
+        <div>
+          <div class="comparison-label">Ground Truth</div>
+          <img src="static/images/qual3d/nrgbd_whiteroom_gt.png" alt="whiteroom GT">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h3 class="title is-3" style="text-align:left;">Citation</h3>
+      <div class="bibtex-box">@misc{zou2026attentionretrieveretrievevggttrainingfreelong,
+      title={Attention Itself Could Retrieve. RetrieveVGGT: Training-Free Long Context Streaming 3D Reconstruction via Query-Key Similarity Retrieval},
+      author={Zichen Zou and Xiaosong Jia and Zuxuan Wu and Yu-Gang Jiang},
+      year={2026},
+      eprint={2605.09644},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2605.09644},
+}</div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          &copy; 2026 RetrieveVGGT Project. All rights reserved.<br>
+          Institute of Trustworthy Embodied AI (TEAI), Fudan University
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
