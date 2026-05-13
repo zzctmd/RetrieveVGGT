@@ -44,10 +44,19 @@
     }
     .comparison-grid img {
       width: 100%;
-      height: 260px;
-      object-fit: cover;
       border-radius: 4px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .comparison-grid > div:first-child {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .comparison-grid > div:first-child img {
+      max-height: 220px;
+      width: auto;
+      max-width: 100%;
     }
     .comparison-label {
       text-align: center;
