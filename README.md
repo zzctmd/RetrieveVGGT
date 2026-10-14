@@ -15,12 +15,15 @@
 </div>
 
 <p align="center">
+    <a href="https://neurips.cc/Conferences/2026"><img src="https://img.shields.io/badge/NeurIPS-2026-blue" alt="NeurIPS 2026"></a>
     <a href="https://arxiv.org/abs/2605.09644"><img src="https://img.shields.io/badge/arXiv-RetrieveVGGT-red?logo=arxiv" alt="Paper PDF"></a>
+    <a href="https://zzctmd.github.io/RetrieveVGGT/"><img src="https://img.shields.io/badge/Project_Page-RetrieveVGGT-green?logo=github" alt="Project Page"></a>
 </p>
 
-## 📰 News
-- [May 2026] Paper release.
-- [May 2026] Code release.
+## 🔥 News
+- **2026-10:** 🎉🎉🎉 RetrieveVGGT is accepted at NeurIPS 2026!
+- **2026-05:** Paper release.
+- **2026-05:** Code release.
 
 ## 📖 Overview
 
@@ -170,14 +173,11 @@ Many thanks to these authors!
 
 If you incorporate our work into your research, please cite:
 ```
-@misc{zou2026attentionretrieveretrievevggttrainingfreelong,
-      title={Attention Itself Could Retrieve.RetrieveVGGT: Training-Free Long Context Streaming 3D Reconstruction via Query-Key Similarity Retrieval}, 
-      author={Zichen Zou and Xiaosong Jia and Zuxuan Wu and Yu-Gang Jiang},
-      year={2026},
-      eprint={2605.09644},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2605.09644}, 
+@inproceedings{zou2026retrievevggt,
+  title={RetrieveVGGT: Training-Free Long Context Streaming 3D Reconstruction via Query-Key Similarity Retrieval},
+  author={Zou, Zichen and Jia, Xiaosong and Wu, Zuxuan and Jiang, Yu-Gang},
+  booktitle={NeurIPS},
+  year={2026}
 }
 ```
 
