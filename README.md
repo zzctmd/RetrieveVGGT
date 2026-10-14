@@ -12,10 +12,13 @@
     <p>
         <sup>1</sup><a>Institute of Trustworthy Embodied AI (TEAI), Fudan University</a>&nbsp;&nbsp;
     </p>
+    <p>
+        "RetrieveVGGT: Training-Free Long Context Streaming 3D Reconstruction via Query-Key Similarity Retrieval", <strong>NeurIPS 2026</strong>
+    </p>
 </div>
 
 <p align="center">
-    <a href="https://neurips.cc/Conferences/2026"><img src="https://img.shields.io/badge/NeurIPS-2026-blue" alt="NeurIPS 2026"></a>
+    <a href="https://neurips.cc/virtual/2026/loc/sydney/poster/150300"><img src="https://img.shields.io/badge/NeurIPS-2026-blue" alt="NeurIPS 2026"></a>
     <a href="https://arxiv.org/abs/2605.09644"><img src="https://img.shields.io/badge/arXiv-RetrieveVGGT-red?logo=arxiv" alt="Paper PDF"></a>
     <a href="https://zzctmd.github.io/RetrieveVGGT/"><img src="https://img.shields.io/badge/Project_Page-RetrieveVGGT-green?logo=github" alt="Project Page"></a>
 </p>
